@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Job Application Tracker</title>
+
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h3>Application details</h3>
+        <a href="/status/application" class="btn btn-sm btn-primary">Lihat Data</a>
+        <hr/>
+
+            <div class="form-group">
+                <label for=""><h7>Applicant's file Introspecting:</h7></label><br>
+				<a href="#" title="RYAN">
+					<figure><img id="myImage" class="btn btn-primary btn-block btn-warning" src="http://127.0.0.1:2222/{{ .application.Filepath }}" alt="My Image"> </figure>
+				</a>
+            </div>
+
+            <div class="form-group">
+                <form
+                id="myApplication"
+                action="/post/application/approval?id={{ .application.Id }}"
+                method="POST"
+                >
+					{{ if .application.Id }}
+					<input type="hidden" name="app_id" value="{{ .application.Id }}">
+					<input type="hidden" name="app_nama" value="{{ .application.Nama }}">
+					<input type="hidden" name="app_kontak" value="{{ .application.Kontak }}">
+					<input type="hidden" name="app_umur" value="{{ .application.Umur }}">
+					<input type="hidden" name="app_jekel" value="{{ .application.Jekel }}">
+					<input type="hidden" name="app_deskripsi" value="{{ .application.Deskripsi }}">
+					<input type="hidden" name="app_jobid" value="{{ .application.JobId }}">
+					<input type="hidden" name="app_joborganisasi" value="{{ .application.JobOrganisasi }}">
+					<input type="hidden" name="app_filepath" value="{{ .application.Filepath }}">
+					<input type="hidden" name="app_approval" value="{{ .application.Approval }}">
+					{{ end }}
+                <button class="btn btn-primary btn-block" type="submit">Approve</button>
+                <button class="btn btn-primary btn-block btn-danger" type="submit">Reject</button><br><br>
+                </form>
+            </div>
+            
+        <hr/>
+        <!--------------------------------------->
+<!--------------------------------------------------------------------------------->
+        <div class="container">
+			<!-- <div class="main-content-area"> -->
+				<div class="aboutus-info style-center">
+					<b class="box-title">Interesting Organisasi Facts</b>
+					<p class="txt-content">Directly connects farmers to consumers, promoting local and sustainable food systems.
+						Implements innovative technologies to optimize supply chain efficiency and reduce food waste.
+						Provides a platform for farmers to access wider markets and increase their income.
+						Offers educational programs to empower farmers with knowledge and best practices.
+						Collaborates with local communities to strengthen the agricultural ecosystem and promote rural development.</p>
+				</div>
+
+				<div class="row equal-container">
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+						<div class="aboutus-box-score equal-elem ">
+							<b class="box-score-title">Portfolios</b>
+							<p class="desc">
+								<div class="media">
+									<a href="#" title="RYAN">
+										<figure><img id="myImage" class="btn btn-sm btn-danger" src="http://127.0.0.1:2222/gal1.jpg" alt="My Image" style="display:block"> </figure>
+									</a>
+								</div>
+							</p>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+						<div class="aboutus-box-score equal-elem ">
+							<b class="box-score-title"></b>
+							<p class="desc">
+								<div class="media">
+									<a href="#" title="RYAN">
+										<figure><img id="myImage" class="btn btn-sm btn-danger" src="http://127.0.0.1:2222/gal2.jpg" alt="My Image" style="display:block"> </figure>
+									</a>
+								</div>
+							</p>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+						<div class="aboutus-box-score equal-elem ">
+							<b class="box-score-title"></b>
+							<p class="desc">
+								<div class="media">
+									<a href="#" title="RYAN">
+										<figure><img id="myImage" class="btn btn-sm btn-danger" src="http://127.0.0.1:2222/gal3.jpg" alt="My Image" style="display:block"> </figure>
+									</a>
+								</div>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+						<div class="aboutus-info style-small-left">
+							<b class="box-title">Info</b><br>
+							<h7 class="txt-content">Nama: {{ .application.Nama }}</h7><br>
+                            <h7 class="txt-content">Kontak:<a href="#{{.application.Kontak}}" title="RYAN"> {{ .application.Kontak }}</a></h7><br>
+                            <h7 class="txt-content">Umur: {{ .application.Umur }}</h7><br>
+                            <h7 class="txt-content">Jekel: {{ .application.Jekel }}</h7><br><br>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="aboutus-info style-small-left">
+							<b class="box-title">Deskripsi</b>
+							<p class="txt-content">{{ .application.Deskripsi }}</p>
+						</div>
+					</div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+						<div class="aboutus-info style-small-left">
+							<b class="box-title">Job Organisasi</b>
+							<p class="txt-content">{{ .application.JobOrganisasi }}</p>
+						</div>
+					</div>
+				</div>
+				<div class="our-team-info"><br><br>
+					<h4 class="title-box">Organisasi Member</h4>
+					<div class="our-staff">
+						<div 
+							class="slide-carousel owl-carousel style-nav-1 equal-container" 
+							data-items="5" 
+							data-loop="false" 
+							data-nav="true" 
+							data-dots="false"
+							data-margin="30"
+							data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"4"}}' >
+
+							<div class="team-member equal-elem">
+								<div class="media">
+									<a href="#" title="RYAN">
+										<figure><img id="myImage" class="btn btn-sm btn-warning" src="http://127.0.0.1:2222/member-leon.jpg" alt="My Image"> </figure>
+									</a>
+								</div>
+								<div class="info">
+									<b class="name">Ryan</b>
+									<span class="title">Director</span>
+									<p class="desc">Contrary to popular belief, This guy is also the developer...</p>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+			<!-- </div> -->
+			
+
+		</div><!--end container-->
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Job Application Tracker</title>
+
+</head>
+<body>
+    <div class="container mt-5">
+        {{ if .application.Id }}
+        <h3>Edit application</h3>
+        {{ else }}
+        <h3>Create application</h3>
+        {{ end }}
+        <a href="/posts/job?id={{ .job.Id }}" class="btn btn-sm btn-primary">Lihat Data</a>
+        <hr/>
+
+        <form action="/post/storeapplication" enctype="multipart/form-data" method="post">
+            <div class="form-group">
+                <label for="">Nama</label>
+                <input type="text" name="application_nama" value="{{ .application.Nama }}" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="">Kontak</label>
+                <input type="text" name="application_kontak" value="{{ .application.Kontak }}" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="">Umur</label>
+                <input type="text" name="application_umur" value="{{ .application.Umur }}" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label>Jenis Kelamin:
+                    <select name="application_jekel" id="jekel" value="{{ .application.Jekel }}">
+                        <option>Laki-Laki</option>
+                        <option>Perempuan</option>
+                        <option>Laki-Laki/Perempuan</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="">Deskripsi</label>
+                <textarea name="application_deskripsi" rows="10" class="form-control" value="{{ .application.Deskripsi }}">{{ .application.Deskripsi }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-sm btn-warning">I agree with the terms and services applied</button><br><br>
+                {{ if .application.Id}}
+                {{ else }}
+                <input class="input file-input" id="myUpload" type="file" name="file" multiple />
+                {{ end }}
+            </div>
+
+            <div class="form-group">
+                {{ if .job.Id }}
+                    <input type="hidden" name="job_id" value="{{ .job.Id }}">
+                    <input type="hidden" name="job_organisasi" value="{{ .job.Organisasi }}">
+                    <input type="hidden" name="application_id" value="{{ .application.Id }}">
+                {{ end }}
+                
+                <button type="submit" class="btn btn-primary btn-block">SUBMIT</button>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>

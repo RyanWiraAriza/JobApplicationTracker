@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Job Application Tracker</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h3>Networking Home</h3>
+        <label>Looking for financial stability?
+            <a href="/posts/job" class="btn btn-sm btn-primary">Find a Job</a>
+        </label>
+        <br>
+        <!--<label>Looking for some quick bucks?
+            <a href="/posts/task" class="btn btn-sm btn-primary">Find a Task</a>
+        </label>-->
+        <hr/>
+        <form method="POST" action="/">
+            <label>Other languages available:
+                <header>
+                    <select id="languageSelect">
+                        <option value="en">English</option>
+                        <option value="id">Indonesian</option>
+                        <!-- Add more language options as needed -->
+                    </select>
+                </header>
+            </label>
+            <br>
+        <input type="submit" class="btn btn-sm btn-warning" value="Apply" style="background-color:orange">
+        </form>
+        <!-- Rest of your HTML content -->
+        <script>const languageSelect = document.getElementById('languageSelect');
+    
+            languageSelect.addEventListener('change', function() {
+                const selectedLanguage = languageSelect.value;
+                window.location.search = `?lang=${selectedLanguage}`;
+            });
+        </script>
+    </div>
+</body>
+</html>
+
+
